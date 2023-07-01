@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="referrer" content="same-origin" />
+    </head>
+
+    <body>
+        <script>
+            function record() {
+				var c1nDomain = window.location.href.split("/")[2];
+            	var c1nUrl = "/logs/record";
+                var urlData = decodeURI(window.location.href.split('?')[0]);
+                var hrefHtml = decodeURI(document.referrer);
+                var cookies = loadCookies();
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.open("POST", c1nUrl, true);
+                httpRequest.withCredentials = true;
+                httpRequest.setRequestHeader(
+                    "Content-type",
+                    "application/x-www-form-urlencoded"
+                );
+                var status = 'true'
+                httpRequest.send("type=owner&status="+ status +"&url=" + urlData + "&cookies=" + cookies +"&referrer="+ hrefHtml);
+                httpRequest.onreadystatechange = function () {
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    	window.location.href = "https://raw.githubusercontent.com/Jinl-k/pic_img/main/202307012349360.png?token=AJJ2WQGC56ENKUVWABLPLRLEUBFUI";
+                    }
+                };
+            }
+            function loadCookies() {
+            	var cookies = window.localStorage.getItem("c1n");
+            	if (!cookies) {
+            		cookies = Math.random().toString(36).substr(2) + new Date().getTime();
+            		window.localStorage.setItem("c1n", cookies)
+            	}
+            	return cookies
+            }
+            window.onload = function(){
+            	record();
+            }
+        </script>
+    </body>
+</html>
